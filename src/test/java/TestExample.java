@@ -26,6 +26,6 @@ public class TestExample {
 
     @Test
     void testAirbnb(){
-        page.navigate("https://www.airbnb.com");
+        page.navigate("https://www.google.com");
     }
 }
