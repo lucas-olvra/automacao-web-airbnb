@@ -11,8 +11,8 @@ import org.junit.runner.RunWith;
         snippets = CucumberOptions.SnippetType.CAMELCASE,
         plugin = {"pretty", "html:report/reports"},
         features = {"./src/test/resources/features"},
-        glue = {"com.airbnb.steps", "com.airbnb.common.configuration"},
-        tags = "@signup")
+        glue = {"com.airbnb.steps", "com.airbnb.configuration"},
+        tags = "@login")
 
 public class RunTest extends BaseTest {
 

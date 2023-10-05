@@ -1,4 +1,4 @@
-package com.airbnb.common.configuration;
+package com.airbnb.configuration;
 
 import com.airbnb.common.BaseTest;
 import com.airbnb.common.StaticVariable;
