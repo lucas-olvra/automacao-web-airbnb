@@ -24,6 +24,9 @@ public class HomeFunc extends BaseTest {
                 }
                 driver.locator(homePage.getButtonLogin()).click();
                 driver.locator(homePage.getButtonEmail()).click();
+                break;
+            default:
+                System.out.println("-----");
         }
     }
 
