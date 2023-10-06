@@ -1,0 +1,49 @@
+name: Execute tests e2e web
+on: #Define os eventos que desencadearão a execução do fluxo de trabalho(workflow).
+  pull_request: #Define que assim que for aberto, reaberto ou adicionada um novo commit na PR
+    #irá executar o workflow automaticamente.
+    type: [opened, reopened, synchronize]
+  workflow_dispatch: #Permite iniciar a action manualmente.
+jobs: #Define as tarefas a serem executadas no fluxo de trabalho(workflow).
+  mvn-run:
+    runs-on: ubuntu-latest #Define qual sistema operacional irá utilizar para executar o fluxo de trabalho(workflow).
+    timeout-minutes: 10 #Define um tempo máximo de execução do workflow.
+
+    steps: #Define as actions individuais a serem realizadas em um trabalho.
+      - name: Checkout repository #Define um nome para a action.
+        uses: actions/@checkout@v3
+
+      - name: Set up Maven
+        uses: s4u/setup-maven-action@v1.8.0
+        with:
+          java-version: 19
+          maven-version: 3.9.4
+
+      - name: Run tests # run -> Possibilita inserir comandos no terminal.
+        run: mvn clean install
+
+     # - name: Get Allure history
+     #  uses: action/checkout@v3
+     #   if: always() #if -> Possibilita adicionar uma condição para execução da action.
+     #   continue-on-error: true #Determina o comportamento do fluxo de trabalho quando uma etapa falha.
+        #Se definida como true, o fluxo de trabalho continuará mesmo se a etapa atual falhar.
+     #   with: #with -> Possibilita inserir parâmetros específicos para uma action.
+     #     ref: gh-pages
+     #     path: gh-pages
+
+     # - name: Test marketplace action
+     #   uses: simple-elf/allure-report-action@master
+     #   if: always()
+     #   with:
+     #     allure_reports: target/allure-results
+     #     gh_pages: gh_pages
+     #     allure_report: allure-report
+     #     allure_history: allure-history
+
+     # - name: Deploy report to Github Pages
+     #   if: always()
+     #   uses: peaceiris/action-gh-pages@v3
+     #   with:
+     #     github_token: ${{ secrets.TOKEN }} #secrets -> Possibilita a utilização de dados sensíveis.
+     #     publish_branch: gh-pages
+     #     publish_dir: allure-history
