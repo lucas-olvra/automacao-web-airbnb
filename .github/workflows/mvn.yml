@@ -4,12 +4,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: action/checkout@v4
-      - name: Set up Java
-        uses: actions/setup-java@v3
+      - name: Checkout Repository
+        uses: action/checkout@v3
+
+      - name: Set up Maven
+        uses: s4u/setup-maven-action@v1.8.0
         with:
-          java-version: '19'
-          distribution: 'temurin'
+          java-version: 19
+          maven-version: 3.9.4
 
       - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots package
+        run: mvn -B install -D skipTests --no-transfer-progress
+
+      - name: Install Playwright
+        run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
+
+      - name: Run tests
+        run: mvn test
