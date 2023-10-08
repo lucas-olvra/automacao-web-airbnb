@@ -1,11 +1,10 @@
-name: Java CI
 on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: action/checkout@v3
+        uses: action/checkout@v4
 
       - name: Set up Maven
         uses: s4u/setup-maven-action@v1.8.0
