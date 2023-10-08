@@ -4,10 +4,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: action/checkout@v4
-
-      - name: Local action
-        uses: ./.github/workflow/mvn.yml
+        uses: actions/checkout@v4
 
       - name: Set up Maven
         uses: s4u/setup-maven-action@v1.8.0
