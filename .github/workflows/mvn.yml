@@ -5,6 +5,7 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: action/checkout@v4
+      - run: ${{ github.repository }}
 
       - name: Set up Maven
         uses: s4u/setup-maven-action@v1.8.0
