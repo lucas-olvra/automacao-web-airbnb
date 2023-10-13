@@ -1,0 +1,22 @@
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Maven
+        uses: s4u/setup-maven-action@v1.8.0
+        with:
+          java-version: 19
+          maven-version: 3.9.4
+
+      - name: Build with Maven
+        run: mvn -B install -D skipTests --no-transfer-progress
+
+      - name: Install Playwright
+        run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
+
+      - name: Run tests
+        run: mvn test

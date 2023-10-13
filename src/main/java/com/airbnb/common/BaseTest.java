@@ -13,7 +13,7 @@ public abstract class BaseTest {
     public static void inicializarDriver() {
         playwright = Playwright.create();
         browser = playwright.chromium().launch();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        //browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
     }
 
     protected static void createContextAndPage() {
