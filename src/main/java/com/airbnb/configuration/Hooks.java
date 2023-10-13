@@ -21,7 +21,7 @@ public class Hooks extends BaseTest {
 
     @Before
     public void before() {
-        // Aqui você pode definir qualquer configuração adicional antes de executar seus testes
+        // definindo qualquer configuração adicional antes de executar seus testes
         StaticVariable.setUrl("https://www.airbnb.com.br");
         driver.setViewportSize(1400, 720);
         driver.navigate(StaticVariable.getUrl());
@@ -34,7 +34,6 @@ public class Hooks extends BaseTest {
         context.close();
     }
 
-    // Método para criar o driver e a context
     public static void createDriverContext() {
         createContextAndPage();
     }
